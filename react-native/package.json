@@ -17,11 +17,11 @@
     "react": "16.0.0",
     "react-native": "0.50.4",
     "react-native-dropdownalert": "3.1.2",
-    "react-native-elements": "0.18.4",
-    "react-native-meteor": "1.2.0",
+    "react-native-elements": "^0.18.4",
+    "react-native-meteor": "^1.2.0",
     "react-native-platform-stylesheet": "0.0.6",
-    "react-native-vector-icons": "4.4.2",
-    "react-navigation": "1.0.0-beta.21"
+    "react-native-vector-icons": "^4.4.2",
+    "react-navigation": "^1.0.0-beta.21"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",

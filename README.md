@@ -1,4 +1,4 @@
-The complete example app to go along with [Learn React Native + Meteor](http://handlebarlabs.teachable.com/p/react-native-meteor). A detailed overview and getting started guide is available in the course.
+React native and Meteor app, following the course: [Learn React Native + Meteor](http://handlebarlabs.teachable.com/p/react-native-meteor)
 
 ## Getting Started
 
