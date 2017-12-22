@@ -23,5 +23,5 @@ practicalmeteor:mocha             # A package for writing and running your meteo
 johanbrook:publication-collector  # Test a Meteor publication by collecting its output
 mdg:validated-method
 aldeed:simple-schema
-accounts-password@1.4.0
+accounts-password
 dynamic-import
