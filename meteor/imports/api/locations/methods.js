@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Locations } from './locations';
+import { Activity } from '../activity/activity';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
@@ -11,15 +12,55 @@ export const getNearestLocations = new ValidatedMethod({
     }).validator(),
     run({ latitude, longitude}) {
         const query = {
-            $near: {
-                $geometry: {
-                    type: 'Point',
-                    coordinates: [longitude, latitude]
-                },
-                $minDistance: 0
+            location: {
+                $near: {
+                    $geometry: {
+                        type: 'Point',
+                        coordinates: [longitude, latitude]
+                    },
+                    $minDistance: 0
+                }
             }
         };
 
         return Locations.find(query, { limit: 10 }).fetch();
+    }
+});
+
+export const changeCheckinStatus = new ValidatedMethod({
+    name: 'Locations.changeCheckin',
+    validate: new SimpleSchema({
+        locationId: { type: String },
+        status: { type: String, allowedValues: ['in', 'out']}
+    }).validator(),
+    run({ locationId, status}) {
+        const location = Locations.findOne({ _id: locationId });
+
+        if (!location) {
+            throw new Meteor.Error('Locations.changeCheckin.invalidLocationId',
+            'Must pass a valid location id to change checkin status.')
+        }
+
+        if (status === 'in') {
+            Locations.update({ _id: locationId }, {
+                $set: {
+                    checkedInUserId: 'demo'
+                }
+            });
+        } else {
+            Locations.update({ _id: locationId }, {
+                $set: {
+                    checkedInUserId: null
+                }
+            });
+        }
+
+        Activity.insert({
+            createdAt: new Date(),
+            username: 'demo',
+            userId: 'demo',
+            type: status,
+            locationId
+        });
     }
 });
