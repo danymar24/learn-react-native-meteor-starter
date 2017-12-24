@@ -10,6 +10,7 @@ import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
 import ProfileLayout from '../screens/ProfileLayout';
 import Profile from '../screens/Profile';
+import NearMeMap from '../screens/NearMeMap';
 
 export const HomeStack = StackNavigator({
   FindNearMe: {
@@ -30,6 +31,12 @@ export const HomeStack = StackNavigator({
       title: 'Near Me',
     },
   },
+  NearMeMap: {
+    screen: NearMeMap,
+    navigationOptions: {
+      title: 'Near Me Map'
+    }
+  }
 }, {
   headerMode: 'screen',
 });
